@@ -1,0 +1,99 @@
+﻿<Window x:Class="Chapter06.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        mc:Ignorable="d"
+        Title="MainWindow"
+		Height="300"
+		Width="500"
+		WindowStartupLocation="CenterScreen">
+
+	<Window.Resources>
+		<Style TargetType="ListViewItem">
+			<Setter Property="HorizontalContentAlignment" Value="Stretch" />
+		</Style>
+	</Window.Resources>
+
+	<Grid>
+
+		<Grid.RowDefinitions>
+			<RowDefinition Height="Auto" />
+			<RowDefinition Height="*" />
+			<RowDefinition Height="Auto" />
+		</Grid.RowDefinitions>
+
+		<Grid.ColumnDefinitions>
+			<ColumnDefinition Width="Auto" />
+			<ColumnDefinition Width="*" />
+		</Grid.ColumnDefinitions>
+
+		<Label Content="Filtruj wg nazwy produktu:"
+			   Grid.Row="0"
+			   Grid.Column="0"
+			   Margin="5" />
+
+		<TextBox Name="TxtFilter"
+				 Grid.Row="0"
+				 Grid.Column="1"
+				 Margin="5"
+				 TextChanged="TxtFilter_TextChanged" />
+
+		<ListView x:Name="LstProducts"
+				  Grid.Row="1"
+				  Grid.Column="0"
+				  Grid.ColumnSpan="2"
+				  Margin="5"
+				  MouseDoubleClick="LstProducts_MouseDoubleClick"
+				  KeyDown="LstProducts_KeyDown">
+
+			<ListView.View>
+				<GridView>
+					<GridView.Columns>
+						<GridViewColumn Header="Symbol"
+										DisplayMemberBinding="{Binding Symbol}" />
+
+						<GridViewColumn Header="Nazwa"
+										DisplayMemberBinding="{Binding Name}" />
+
+						<GridViewColumn Header="Liczba sztuk">
+							<GridViewColumn.CellTemplate>
+								<DataTemplate>
+									<TextBlock FontSize="12"
+											   Foreground="Green"
+											   FontWeight="Bold"
+											   Background="LightGray"
+											   TextAlignment="Right"
+											   Text="{Binding Quantity}" />
+								</DataTemplate>
+							</GridViewColumn.CellTemplate>
+						</GridViewColumn>
+						<GridViewColumn Header="Magazyn"
+										DisplayMemberBinding="{Binding Warehouse}" />
+					</GridView.Columns>
+				</GridView>
+			</ListView.View>
+		</ListView>
+
+		<StackPanel Grid.Row="2"
+					Grid.Column="0"
+					Grid.ColumnSpan="2"
+					Orientation="Horizontal"
+					HorizontalAlignment="Center">
+
+			<Button x:Name="BtnAdd"
+					Content="Dodaj"
+					Width="150"
+					Height="25"
+					Margin="5"
+					Click="BtnAdd_Click" />
+
+			<Button x:Name="BtnDelete"
+					Content="Usuń"
+					Width="150"
+					Height="25"
+					Margin="5"
+					Click="BtnDelete_Click" />
+		</StackPanel>
+	</Grid>
+</Window>

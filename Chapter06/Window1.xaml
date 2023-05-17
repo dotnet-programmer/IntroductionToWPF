@@ -1,0 +1,82 @@
+﻿<Window x:Class="Chapter06.Window1"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        mc:Ignorable="d"
+        Title="Produkt"
+		Height="220"
+		Width="350"
+		WindowStartupLocation="CenterScreen">
+
+	<Grid x:Name="GridProduct">
+		<Grid.RowDefinitions>
+			<RowDefinition Height="Auto" />
+			<RowDefinition Height="Auto" />
+			<RowDefinition Height="Auto" />
+			<RowDefinition Height="Auto" />
+			<RowDefinition Height="*" />
+		</Grid.RowDefinitions>
+		<Grid.ColumnDefinitions>
+			<ColumnDefinition Width="Auto" />
+			<ColumnDefinition Width="*" />
+		</Grid.ColumnDefinitions>
+
+		<Label Content="Symbol:"
+			   Grid.Row="0"
+			   Grid.Column="0"
+			   Margin="5" />
+
+		<TextBox Grid.Row="0"
+				 Grid.Column="1"
+				 Margin="5"
+				 Text="{Binding Symbol}" />
+
+		<!--to samo, tylko jawnie opisujemy Path, Element Name pominięty, bo w Code-behind jest określony DataContext
+			<TextBox Grid.Row="0"
+					 Grid.Column="1"
+					 Margin="5"
+					 Text="{Binding Path=Symbol}" />-->
+
+		<Label Content="Nazwa:"
+			   Grid.Row="1"
+			   Grid.Column="0"
+			   Margin="5" />
+
+		<TextBox Grid.Row="1"
+				 Grid.Column="1"
+				 Margin="5"
+				 Text="{Binding Name}" />
+
+		<Label Content="Liczba sztuk:"
+			   Grid.Row="2"
+			   Grid.Column="0"
+			   Margin="5" />
+
+		<TextBox Grid.Row="2"
+				 Grid.Column="1"
+				 Margin="5"
+				 Text="{Binding Quantity, UpdateSourceTrigger=PropertyChanged}" />
+
+		<Label Content="Magazyn:"
+			   Grid.Row="3"
+			   Grid.Column="0"
+			   Margin="5" />
+
+		<TextBox Grid.Row="3"
+				 Grid.Column="1"
+				 Margin="5"
+				 Text="{Binding Warehouse}" />
+
+		<Button x:Name="BtnConfirm"
+				Grid.Row="5"
+				Grid.Column="0"
+				Grid.ColumnSpan="2"
+				Margin="4"
+				Width="120"
+				Height="25"
+				HorizontalAlignment="Center"
+				Content="Potwierdź"
+				Click="BtnConfirm_Click" />
+	</Grid>
+</Window>

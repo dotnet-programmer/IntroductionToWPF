@@ -1,0 +1,167 @@
+﻿<Window x:Class="Chapter03.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        mc:Ignorable="d"
+        Title="Square"
+		Height="500"
+		Width="700"
+		WindowStartupLocation="CenterScreen"
+		Background="LightGray">
+
+	<Window.Resources>
+		<Style TargetType="Button">
+			<Setter Property="Margin" Value="10" />
+			<Setter Property="FontSize" Value="17" />
+		</Style>
+		<Style TargetType="RadioButton">
+			<Setter Property="Margin" Value="10" />
+			<Setter Property="FontSize" Value="17" />
+			<Setter Property="VerticalContentAlignment" Value="Center" />
+		</Style>
+		<Style TargetType="Label">
+			<Setter Property="FontWeight" Value="Bold" />
+			<Setter Property="FontSize" Value="17" />
+			<Setter Property="Margin" Value="10" />
+			<Setter Property="HorizontalContentAlignment" Value="Right" />
+			<Setter Property="VerticalContentAlignment" Value="Center" />
+		</Style>
+		<Style TargetType="ComboBox">
+			<Setter Property="FontSize" Value="17" />
+			<Setter Property="Margin" Value="10" />
+			<Setter Property="HorizontalContentAlignment" Value="Center" />
+			<Setter Property="VerticalContentAlignment" Value="Center" />
+		</Style>
+		<Style TargetType="TextBlock">
+			<Setter Property="FontSize" Value="17" />
+			<Setter Property="Margin" Value="10" />
+			<Setter Property="Foreground" Value="Red" />
+		</Style>
+		<Style TargetType="TextBox">
+			<Setter Property="FontSize" Value="17" />
+			<Setter Property="Margin" Value="10" />
+			<Setter Property="HorizontalContentAlignment" Value="Center" />
+			<Setter Property="VerticalContentAlignment" Value="Center" />
+		</Style>
+	</Window.Resources>
+
+	<Grid FocusManager.FocusedElement="{Binding ElementName=TxtSide}">
+		<Grid.RowDefinitions>
+			<RowDefinition Height="Auto" />
+			<RowDefinition Height="Auto" />
+			<RowDefinition Height="Auto" />
+			<RowDefinition Height="Auto" />
+			<RowDefinition Height="Auto" />
+			<RowDefinition Height="Auto" />
+			<RowDefinition Height="Auto" />
+			<RowDefinition />
+		</Grid.RowDefinitions>
+		<Grid.ColumnDefinitions>
+			<ColumnDefinition Width="Auto" />
+			<ColumnDefinition Width="Auto" />
+			<ColumnDefinition />
+		</Grid.ColumnDefinitions>
+
+		<Label Grid.Row="0"
+			   Grid.Column="0"
+			   Content="Bok:" />
+
+		<TextBox Grid.Row="0"
+				 Grid.Column="1"
+				 x:Name="TxtSide"
+				 Width="200"
+				 TextChanged="TxtSide_TextChanged" />
+
+		<TextBlock Grid.Row="0"
+				   Grid.Column="2"
+				   x:Name="TxtInformation"
+				   Text="Wpisz wymiar boku" />
+
+		<Label Grid.Row="1"
+			   Grid.Column="0"
+			   Content="Pole:" />
+
+		<TextBox Grid.Row="1"
+				 Grid.Column="1"
+				 x:Name="TxtArea"
+				 Width="200"
+				 IsEnabled="False" />
+
+		<Rectangle Grid.Row="1"
+				   Grid.Column="2"
+				   Grid.RowSpan="6"
+				   x:Name="MainRectangle"
+				   Margin="10" />
+
+		<Label Grid.Row="2"
+			   Grid.Column="0"
+			   Content="Obwód:" />
+
+		<TextBox Grid.Row="2"
+				 Grid.Column="1"
+				 x:Name="TxtPerimeter"
+				 Width="200"
+				 IsEnabled="False" />
+
+		<Label Grid.Row="3"
+			   Grid.Column="0"
+			   Content="Kolor:" />
+
+		<ComboBox Grid.Row="3"
+				  Grid.Column="1"
+				  x:Name="CbColors"
+				  SelectedIndex="0">
+			<ComboBoxItem Content="Black" />
+			<ComboBoxItem Content="Red" />
+			<ComboBoxItem Content="Yellow" />
+			<ComboBoxItem Content="Green" />
+			<ComboBoxItem Content="Blue" />
+		</ComboBox>
+
+		<CheckBox  Grid.Row="4"
+				   Grid.Column="1"
+				   x:Name="ChbOpacity"
+				   Content="Półprzezroczysty"
+				   FontSize="17"
+				   HorizontalAlignment="Center"
+				   VerticalAlignment="Center"
+				   Margin="10" />
+
+		<Button Grid.Row="5"
+				Grid.Column="1"
+				x:Name="BtnDraw"
+				Content="Rysuj"
+				Height="30"
+				Click="BtnDraw_Click" />
+
+		<Button Grid.Row="6"
+				Grid.Column="1"
+				x:Name="BtnClear"
+				Content="Wyczyść"
+				Height="30"
+				Click="BtnClear_Click" />
+
+		<StackPanel Grid.Row="7"
+					Grid.Column="0"
+					Grid.ColumnSpan="2"
+					Orientation="Horizontal"
+					Margin="10"
+					HorizontalAlignment="Center">
+
+			<RadioButton x:Name="RbHide"
+						 Content="Ukryj"
+						 Checked="RbHide_Checked"
+						 GroupName="Hiding" />
+
+			<RadioButton x:Name="RbShow"
+						 Content="Pokaż"
+						 Checked="RbShow_Checked"
+						 GroupName="Hiding" />
+		</StackPanel>
+
+		<Image Grid.Row="7"
+			   Grid.Column="2"
+			   Source="loading.png" />
+	</Grid>
+</Window>

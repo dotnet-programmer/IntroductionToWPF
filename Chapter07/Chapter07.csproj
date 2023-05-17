@@ -1,0 +1,30 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net7.0-windows</TargetFramework>
+    <Nullable>enable</Nullable>
+    <UseWPF>true</UseWPF>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="Images\Cancel_1.png" />
+    <None Remove="Images\Cancel_2.png" />
+    <None Remove="Images\Confirm.png" />
+    <None Remove="Images\Refresh_2b.png" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="Images\Cancel_1.png" />
+    <Resource Include="Images\Cancel_2.png" />
+    <Resource Include="Images\Confirm.png" />
+    <Resource Include="Images\Refresh_2b.png" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Update="Products.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+
+</Project>

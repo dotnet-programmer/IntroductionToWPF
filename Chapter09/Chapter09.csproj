@@ -1,0 +1,20 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net7.0-windows</TargetFramework>
+    <Nullable>enable</Nullable>
+    <UseWPF>true</UseWPF>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="Images\glosnik.png" />
+    <None Remove="Images\narzedzia.png" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="Images\glosnik.png" />
+    <Resource Include="Images\narzedzia.png" />
+  </ItemGroup>
+
+</Project>
