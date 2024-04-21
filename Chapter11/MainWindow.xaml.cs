@@ -11,7 +11,7 @@ public partial class MainWindow : Window
 
 	private void Button_Click(object sender, RoutedEventArgs e)
 	{
-		SzablonyKontrolek szablonyKontrolek = new();
+		ControlTemplates szablonyKontrolek = new();
 		szablonyKontrolek.ShowDialog();
 	}
 }

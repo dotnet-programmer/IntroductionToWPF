@@ -1,19 +1,12 @@
 ﻿namespace Chapter06;
 
-internal class Product
+internal class Product(string symbol, string name, int quantity, string warehouse)
 {
-	public string Symbol { get; set; }
-	public string Name { get; set; }
-	public int Quantity { get; set; }
-	public string Warehouse { get; set; }
+	public string Symbol { get; set; } = symbol;
+	public string Name { get; set; } = name;
+	public int Quantity { get; set; } = quantity;
+	public string Warehouse { get; set; } = warehouse;
 
-	public Product(string symbol, string name, int quantity, string warehouse)
-	{
-		Symbol = symbol;
-		Name = name;
-		Quantity = quantity;
-		Warehouse = warehouse;
-	}
-
-	public override string ToString() => $"{Symbol} {Name} {Quantity} {Warehouse}";
+	public override string ToString()
+		=> $"{Symbol} {Name} {Quantity} {Warehouse}";
 }

@@ -11,7 +11,8 @@ public partial class Window1 : Window
 	private readonly bool _isNewProduct;
 	private Product _newProduct;
 
-	public Window1() => InitializeComponent();
+	public Window1()
+		=> InitializeComponent();
 
 	// Przeładowana (przeciążona) wersja konstruktora z obiektem dla głównego okna jako argumentem
 	public Window1(MainWindow mainWin, bool isNewProduct = false)

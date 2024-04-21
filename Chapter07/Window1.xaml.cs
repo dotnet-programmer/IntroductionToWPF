@@ -11,12 +11,12 @@ namespace Chapter07;
 public partial class Window1 : Window
 {
 	// Plik źródłowy
-	private readonly string plik1 = @"Products.xml";
+	private readonly string _file1 = @"Products.xml";
 
 	// Plik wynikowy
-	private readonly string plik2 = @"Products2.xml";
+	private readonly string _file2 = @"Products2.xml";
 
-	private XElement wykazProduktow;
+	private XElement _products;
 
 	public Window1()
 	{
@@ -26,21 +26,21 @@ public partial class Window1 : Window
 
 	private void PrepareBinding()
 	{
-		if (File.Exists(plik1))
+		if (File.Exists(_file1))
 		{
 			// Załadowanie danych z pliku źródłowego
-			wykazProduktow = XElement.Load(plik1);
+			_products = XElement.Load(_file1);
 		}
 
-		GridProducts.DataContext = wykazProduktow;
-		ObservableCollection<string> ListaMagazynow = new() { "Katowice 1", "Katowice 2", "Gliwice 1" };
-		WarehouseName.ItemsSource = ListaMagazynow;
+		GridProducts.DataContext = _products;
+		ObservableCollection<string> warehouses = ["Katowice 1", "Katowice 2", "Gliwice 1"];
+		WarehouseName.ItemsSource = warehouses;
 	}
 
 	private void BtnSave_Click(object sender, RoutedEventArgs e)
 	{
 		// Zapisanie danych do pliku wynikowego
-		wykazProduktow.Save(plik2);
+		_products.Save(_file2);
 		MessageBox.Show("Pomyślnie zapisano dane do pliku");
 	}
 }

@@ -7,5 +7,6 @@ namespace Chapter10;
 /// </summary>
 public partial class Window2 : Window
 {
-	public Window2() => InitializeComponent();
+	public Window2() 
+		=> InitializeComponent();
 }

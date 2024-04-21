@@ -26,5 +26,6 @@ internal class Product
 		Description = description;
 	}
 
-	public override string ToString() => $"{Symbol} {Name} {Quantity} {Warehouse}";
+	public override string ToString()
+		=> $"{Symbol} {Name} {Quantity} {Warehouse}";
 }

@@ -15,9 +15,9 @@ internal class ColorPlToColorEnConverter : IValueConverter
 		}
 
 		// Kolor w języku polskim jako string
-		string kolorPL = value.ToString();
+		string colorPL = value.ToString();
 
-		Dictionary<string, Brush> kolory = new()
+		Dictionary<string, Brush> colors = new()
 		{
 			{ "Czarny", Brushes.Black },
 			{ "Czerwony", Brushes.Red },
@@ -26,8 +26,9 @@ internal class ColorPlToColorEnConverter : IValueConverter
 			{ "Niebieski", Brushes.Blue }
 		};
 
-		return kolory.TryGetValue(kolorPL, out Brush brush) ? brush : (object)Brushes.LightGray;
+		return colors.TryGetValue(colorPL, out Brush brush) ? brush : (object)Brushes.LightGray;
 	}
 
-	public object ConvertBack(object value, Type targetType, object parameter, System.Globalization.CultureInfo culture) => throw new NotImplementedException();
+	public object ConvertBack(object value, Type targetType, object parameter, System.Globalization.CultureInfo culture)
+		=> throw new NotImplementedException();
 }

@@ -1,88 +1,138 @@
 ﻿<Window x:Class="Chapter08.MainWindow"
-        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:Chapter08"
-        mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800" WindowStartupLocation="CenterScreen">
+		xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+		xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+		xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+		xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+		xmlns:local="clr-namespace:Chapter08"
+		mc:Ignorable="d"
+		Title="MainWindow"
+		Height="450"
+		Width="800"
+		WindowStartupLocation="CenterScreen">
 
 	<Window.Resources>
 		<Style TargetType="Button">
-			<Setter Property="Background" Value="LightSteelBlue"/>
-			<Setter Property="HorizontalAlignment" Value="Left"/>
-			<Setter Property="Height" Value="25"/>
-			<Setter Property="VerticalAlignment" Value="Top"/>
+			<Setter Property="Background"
+					Value="LightSteelBlue" />
+			<Setter Property="HorizontalAlignment"
+					Value="Left" />
+			<Setter Property="Height"
+					Value="25" />
+			<Setter Property="VerticalAlignment"
+					Value="Top" />
 		</Style>
 	</Window.Resources>
 
 	<Grid>
-		
+
 		<Grid.RowDefinitions>
-			<RowDefinition Height="Auto"/>
-			<RowDefinition Height="*"/>
+			<RowDefinition Height="Auto" />
+			<RowDefinition Height="*" />
 		</Grid.RowDefinitions>
-		
+
 		<Grid.ColumnDefinitions>
-			<ColumnDefinition Width="*"/>
+			<ColumnDefinition Width="*" />
 		</Grid.ColumnDefinitions>
-		
-		<Menu Grid.Row="0" Grid.Column="0">
+
+		<Menu Grid.Row="0"
+			  Grid.Column="0">
 			<MenuItem Header="Plik">
-				<MenuItem Header="Zapisz jako" Click="Zapisz_Click"/>
-				<MenuItem Header="Drukuj" Click="Tmp_Click"/>
-				<Separator/>
-				<MenuItem Header="Wyjście" Click="Exit_Click"/>
+				<MenuItem Header="Zapisz jako"
+						  Click="Zapisz_Click" />
+				<MenuItem Header="Drukuj"
+						  Click="Tmp_Click" />
+				<Separator />
+				<MenuItem Header="Wyjście"
+						  Click="Exit_Click" />
 			</MenuItem>
 			<MenuItem Header="Narzędzia">
-				<MenuItem Header="Ramka" IsChecked="True" IsCheckable="True" Checked="RamkaOn_Click" Unchecked="RamkaOff_Click"/>
-				<Separator/>
-				<MenuItem Header="Ustawienia" Click="Tmp_Click"/>
+				<MenuItem Header="Ramka"
+						  IsChecked="True"
+						  IsCheckable="True"
+						  Checked="RamkaOn_Click"
+						  Unchecked="RamkaOff_Click" />
+				<Separator />
+				<MenuItem Header="Ustawienia"
+						  Click="Tmp_Click" />
 				<MenuItem Header="Rozmiar">
-					<MenuItem Header="Zwiększ +" Click="Tmp_Click"/>
-					<MenuItem Header="Zmniejsz -" Click="Tmp_Click"/>
+					<MenuItem Header="Zwiększ +"
+							  Click="Tmp_Click" />
+					<MenuItem Header="Zmniejsz -"
+							  Click="Tmp_Click" />
 				</MenuItem>
-				<Separator/>
-				<MenuItem Header="O programie" Click="OProgramie_Click" ToolTip="Informacja o programie">
+				<Separator />
+				<MenuItem Header="O programie"
+						  Click="OProgramie_Click"
+						  ToolTip="Informacja o programie">
 					<MenuItem.Icon>
-						<Image Source="Images/Cancel_2.png" MaxHeight="20" MaxWidth="20"/>
+						<Image Source="Images/Cancel_2.png"
+							   MaxHeight="20"
+							   MaxWidth="20" />
 					</MenuItem.Icon>
 				</MenuItem>
 			</MenuItem>
 		</Menu>
-		
+
 		<!-- Przeglądarka -->
-		<DockPanel Grid.Row="1" Grid.Column="0">
+		<DockPanel Grid.Row="1"
+				   Grid.Column="0">
 			<ToolBar DockPanel.Dock="Top">
-				<Button x:Name="btnWstecz" Content="Wstecz" Width="55" Click="btnWstecz_Click"/>
-				
-				<Button x:Name="btnDalej" Content="Dalej" Width="55" Click="btnDalej_Click"/>
-				
-				<Separator/>
-				
-				<TextBox x:Name="txtAdres" HorizontalAlignment="Left" Height="25" TextWrapping="Wrap" Text="http://" KeyUp="txtAdres_KeyUp" VerticalAlignment="Top" MinWidth="400">
+				<Button x:Name="btnWstecz"
+						Content="Wstecz"
+						Width="55"
+						Click="btnWstecz_Click" />
+
+				<Button x:Name="btnDalej"
+						Content="Dalej"
+						Width="55"
+						Click="btnDalej_Click" />
+
+				<Separator />
+
+				<TextBox x:Name="txtAdres"
+						 HorizontalAlignment="Left"
+						 Height="25"
+						 TextWrapping="Wrap"
+						 Text="http://"
+						 KeyUp="txtAdres_KeyUp"
+						 VerticalAlignment="Top"
+						 MinWidth="400">
 					<TextBox.ContextMenu>
 						<ContextMenu>
-							<MenuItem Command="ApplicationCommands.Cut"/>
-							<MenuItem Command="ApplicationCommands.Copy"/>
-							<MenuItem Command="ApplicationCommands.Paste"/>
-							<Separator/>
+							<MenuItem Command="ApplicationCommands.Cut" />
+							<MenuItem Command="ApplicationCommands.Copy" />
+							<MenuItem Command="ApplicationCommands.Paste" />
+							<Separator />
 							<MenuItem Header="Dodaj do ulubionych">
-								<MenuItem Header="Do folderu" Click="Tmp_Click"/>
-								<MenuItem Header="Do paska ulubionych" Click="Tmp_Click"/>
+								<MenuItem Header="Do folderu"
+										  Click="Tmp_Click" />
+								<MenuItem Header="Do paska ulubionych"
+										  Click="Tmp_Click" />
 							</MenuItem>
 						</ContextMenu>
 					</TextBox.ContextMenu>
 				</TextBox>
-				
-				<Button x:Name="btnWejdz" Content="Wejdź" Width="50" Click="btnWejdz_Click"/>
-				<Button x:Name="BtnNewWindow" Content="Widok drzewa" Width="100" Click="BtnNewWindow_Click" />
-				
+
+				<Button x:Name="btnWejdz"
+						Content="Wejdź"
+						Width="50"
+						Click="btnWejdz_Click" />
+				<Button x:Name="BtnNewWindow"
+						Content="Widok drzewa"
+						Width="100"
+						Click="BtnNewWindow_Click" />
+
 			</ToolBar>
-			<Border x:Name="brdRamka" BorderThickness="3" BorderBrush="DarkCyan">
-				<WebBrowser x:Name="wbPrzegladarka" Navigating="wbPrzegladarka_Navigating" VerticalAlignment="Top" Navigated="wbPrzegladarka_Navigated" HorizontalAlignment="Left"/>
+			<Border x:Name="brdRamka"
+					BorderThickness="3"
+					BorderBrush="DarkCyan">
+				<WebBrowser x:Name="wbPrzegladarka"
+							Navigating="wbPrzegladarka_Navigating"
+							VerticalAlignment="Top"
+							Navigated="wbPrzegladarka_Navigated"
+							HorizontalAlignment="Left" />
 			</Border>
 		</DockPanel>
-		
+
 	</Grid>
 </Window>

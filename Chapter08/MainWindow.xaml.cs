@@ -12,7 +12,8 @@ namespace Chapter08;
 /// </summary>
 public partial class MainWindow : Window
 {
-	public MainWindow() => InitializeComponent();
+	public MainWindow()
+		=> InitializeComponent();
 
 	// Metody obsługi zdarzeń kliknięcia opcji Menu
 
@@ -55,16 +56,20 @@ public partial class MainWindow : Window
 	}
 
 	// Tymczasowa metoda dla niegotowych opcji
-	private void Tmp_Click(object sender, RoutedEventArgs e) => MessageBox.Show("Opcja w budowie");
+	private void Tmp_Click(object sender, RoutedEventArgs e)
+		=> MessageBox.Show("Opcja w budowie");
 
 	// Informacje o programie
-	private void OProgramie_Click(object sender, RoutedEventArgs e) => MessageBox.Show("Prosta przeglądarka www, Wersja 1.0, Helion 2017");
+	private void OProgramie_Click(object sender, RoutedEventArgs e)
+		=> MessageBox.Show("Prosta przeglądarka www, Wersja 1.0, Helion 2017");
 
 	// Wyjście  (zamknięcie okna aplikacji)
-	private void Exit_Click(object sender, RoutedEventArgs e) => Close();
+	private void Exit_Click(object sender, RoutedEventArgs e)
+		=> Close();
 
 	// Metody obsługi zdarzeń dla kontrolek umieszczonych w ToolBar
-	private void btnWejdz_Click(object sender, RoutedEventArgs e) => wbPrzegladarka.Navigate(txtAdres.Text);
+	private void btnWejdz_Click(object sender, RoutedEventArgs e)
+		=> wbPrzegladarka.Navigate(txtAdres.Text);
 
 	private void btnWstecz_Click(object sender, RoutedEventArgs e)
 	{
@@ -91,11 +96,13 @@ public partial class MainWindow : Window
 	}
 
 	// Metody obsługi zdarzeń dla kontrolki WebBrowser (Navigating i Navigated)
-	private void wbPrzegladarka_Navigating(object sender, System.Windows.Navigation.NavigatingCancelEventArgs e) => txtAdres.Text = e.Uri.OriginalString;   // Aktualizacja pola tekstowego z adresem
+	private void wbPrzegladarka_Navigating(object sender, System.Windows.Navigation.NavigatingCancelEventArgs e)
+		=> txtAdres.Text = e.Uri.OriginalString;   // Aktualizacja pola tekstowego z adresem
 
 	// Wywołanie metody ukrywającej błędy JavaScriptu
 
-	private void wbPrzegladarka_Navigated(object sender, NavigationEventArgs e) => HideScriptErrors(wbPrzegladarka, true);
+	private void wbPrzegladarka_Navigated(object sender, NavigationEventArgs e)
+		=> HideScriptErrors(wbPrzegladarka, true);
 
 	public void HideScriptErrors(WebBrowser wb, bool Hide)
 	{

@@ -1,10 +1,10 @@
 ﻿<Window x:Class="Chapter03.MainWindow"
-        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        mc:Ignorable="d"
-        Title="Square"
+		xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+		xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+		xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+		xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+		mc:Ignorable="d"
+		Title="Square"
 		Height="500"
 		Width="700"
 		WindowStartupLocation="CenterScreen"
@@ -12,37 +12,58 @@
 
 	<Window.Resources>
 		<Style TargetType="Button">
-			<Setter Property="Margin" Value="10" />
-			<Setter Property="FontSize" Value="17" />
+			<Setter Property="Margin"
+					Value="10" />
+			<Setter Property="FontSize"
+					Value="17" />
 		</Style>
 		<Style TargetType="RadioButton">
-			<Setter Property="Margin" Value="10" />
-			<Setter Property="FontSize" Value="17" />
-			<Setter Property="VerticalContentAlignment" Value="Center" />
+			<Setter Property="Margin"
+					Value="10" />
+			<Setter Property="FontSize"
+					Value="17" />
+			<Setter Property="VerticalContentAlignment"
+					Value="Center" />
 		</Style>
 		<Style TargetType="Label">
-			<Setter Property="FontWeight" Value="Bold" />
-			<Setter Property="FontSize" Value="17" />
-			<Setter Property="Margin" Value="10" />
-			<Setter Property="HorizontalContentAlignment" Value="Right" />
-			<Setter Property="VerticalContentAlignment" Value="Center" />
+			<Setter Property="FontWeight"
+					Value="Bold" />
+			<Setter Property="FontSize"
+					Value="17" />
+			<Setter Property="Margin"
+					Value="10" />
+			<Setter Property="HorizontalContentAlignment"
+					Value="Right" />
+			<Setter Property="VerticalContentAlignment"
+					Value="Center" />
 		</Style>
 		<Style TargetType="ComboBox">
-			<Setter Property="FontSize" Value="17" />
-			<Setter Property="Margin" Value="10" />
-			<Setter Property="HorizontalContentAlignment" Value="Center" />
-			<Setter Property="VerticalContentAlignment" Value="Center" />
+			<Setter Property="FontSize"
+					Value="17" />
+			<Setter Property="Margin"
+					Value="10" />
+			<Setter Property="HorizontalContentAlignment"
+					Value="Center" />
+			<Setter Property="VerticalContentAlignment"
+					Value="Center" />
 		</Style>
 		<Style TargetType="TextBlock">
-			<Setter Property="FontSize" Value="17" />
-			<Setter Property="Margin" Value="10" />
-			<Setter Property="Foreground" Value="Red" />
+			<Setter Property="FontSize"
+					Value="17" />
+			<Setter Property="Margin"
+					Value="10" />
+			<Setter Property="Foreground"
+					Value="Red" />
 		</Style>
 		<Style TargetType="TextBox">
-			<Setter Property="FontSize" Value="17" />
-			<Setter Property="Margin" Value="10" />
-			<Setter Property="HorizontalContentAlignment" Value="Center" />
-			<Setter Property="VerticalContentAlignment" Value="Center" />
+			<Setter Property="FontSize"
+					Value="17" />
+			<Setter Property="Margin"
+					Value="10" />
+			<Setter Property="HorizontalContentAlignment"
+					Value="Center" />
+			<Setter Property="VerticalContentAlignment"
+					Value="Center" />
 		</Style>
 	</Window.Resources>
 

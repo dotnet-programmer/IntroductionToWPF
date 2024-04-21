@@ -23,18 +23,18 @@ public partial class MainWindow : Window
 
 	private void PrepareBinding()
 	{
-		_products = new ObservableCollection<Product>
-		{
+		_products =
+		[
 			new Product("O1-11", "ołówek", 8, "Katowice 1", new Uri(_path + "Confirm.png"), "Ołówek z gumką HB"),
 			new Product("PW-20", "pióro wieczne", 75, "Katowice 2", new Uri(_path + "Cancel_1.png"), "Pióro ze złotą stalówką"),
 			new Product("DZ-10", "długopis żelowy", 1121, "Katowice 1", new Uri(_path + "Cancel_2.png"), "Długopis z wkładem żelowym"),
 			new Product("DZ-12", "długopis kulkowy", 280, "Katowice 2", new Uri(_path + "Refresh_2b.png"), "Długopis z wkładem kulkowym")
-		};
+		];
 
 		GridProducts.ItemsSource = _products;
 
-		ObservableCollection<string> Warehouses = new() { "Katowice 1", "Katowice 2", "Gliwice 1" };
-		WarehouseName.ItemsSource = Warehouses;
+		ObservableCollection<string> warehouses = ["Katowice 1", "Katowice 2", "Gliwice 1"];
+		WarehouseName.ItemsSource = warehouses;
 
 		ICollectionView view = CollectionViewSource.GetDefaultView(GridProducts.ItemsSource);
 		view.GroupDescriptions.Add(new PropertyGroupDescription("Warehouse"));

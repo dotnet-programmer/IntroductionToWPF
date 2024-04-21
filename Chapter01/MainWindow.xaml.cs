@@ -9,7 +9,8 @@ namespace Chapter01;
 /// </summary>
 public partial class MainWindow : Window
 {
-	public MainWindow() => InitializeComponent();
+	public MainWindow() 
+		=> InitializeComponent();
 
 	private void BtnStart_Click(object sender, RoutedEventArgs e)
 	{
@@ -20,9 +21,11 @@ public partial class MainWindow : Window
 		BtnStart.Opacity = 1;
 	}
 
-	private void BtnTime_MouseEnter(object sender, MouseEventArgs e) => BtnTime.Content = DateTime.Now.ToString("T");
+	private void BtnTime_MouseEnter(object sender, MouseEventArgs e) 
+		=> BtnTime.Content = DateTime.Now.ToString("T");
 
-	private void BtnTime_MouseLeave(object sender, MouseEventArgs e) => BtnTime.Content = "Time";
+	private void BtnTime_MouseLeave(object sender, MouseEventArgs e) 
+		=> BtnTime.Content = "Time";
 
 	private void BtnEnableStart_Click(object sender, RoutedEventArgs e)
 	{
@@ -30,5 +33,6 @@ public partial class MainWindow : Window
 		BtnEnableStart.IsEnabled = false;
 	}
 
-	private void BtnYes_MouseEnter(object sender, MouseEventArgs e) => (BtnYes.Margin, BtnNo.Margin) = (BtnNo.Margin, BtnYes.Margin);
+	private void BtnYes_MouseEnter(object sender, MouseEventArgs e) 
+		=> (BtnYes.Margin, BtnNo.Margin) = (BtnNo.Margin, BtnYes.Margin);
 }

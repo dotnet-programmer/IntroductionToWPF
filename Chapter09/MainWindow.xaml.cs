@@ -1,10 +1,10 @@
-﻿using Microsoft.Win32;
-using System;
+﻿using System;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Controls.Primitives;
 using System.Windows.Media;
 using System.Windows.Threading;
+using Microsoft.Win32;
 
 namespace Chapter09;
 
@@ -13,32 +13,33 @@ namespace Chapter09;
 /// </summary>
 public partial class MainWindow : Window
 {
-	private readonly MediaPlayer mediaPlayer = new();
-	private readonly DispatcherTimer timer;
-	private bool czySuwakJestPrzesuwany = false;
+	private readonly MediaPlayer _mediaPlayer = new();
+	private readonly DispatcherTimer _timer;
+
+	private bool _isSliderMovable = false;
 
 	public MainWindow()
 	{
 		InitializeComponent();
-		timer = new DispatcherTimer
+		_timer = new DispatcherTimer
 		{
 			Interval = TimeSpan.FromMilliseconds(500)
 		};
-		timer.Tick += new EventHandler(timerTick);
+		_timer.Tick += new EventHandler(TimerTick);
 	}
 
-	private void timerTick(object sender, EventArgs e)
+	private void TimerTick(object sender, EventArgs e)
 	{
-		if (mediaPlayer.Source != null && mediaPlayer.NaturalDuration.HasTimeSpan && !czySuwakJestPrzesuwany)
+		if (_mediaPlayer.Source != null && _mediaPlayer.NaturalDuration.HasTimeSpan && !_isSliderMovable)
 		{
-			txtCzas.Text = mediaPlayer.Position.ToString(@"mm\:ss");
+			txtCzas.Text = _mediaPlayer.Position.ToString(@"mm\:ss");
 			// Ustawienia dla ProgressBar
-			TimeSpan ts = mediaPlayer.NaturalDuration.TimeSpan;
+			TimeSpan ts = _mediaPlayer.NaturalDuration.TimeSpan;
 			pbGra.Maximum = 100;
-			pbGra.Value = ((double)mediaPlayer.Position.TotalMilliseconds / ts.TotalMilliseconds) * 100;
+			pbGra.Value = ((double)_mediaPlayer.Position.TotalMilliseconds / ts.TotalMilliseconds) * 100;
 			// Ustawienia dla Slider
-			slGra.Maximum = mediaPlayer.NaturalDuration.TimeSpan.TotalMilliseconds;
-			slGra.Value = mediaPlayer.Position.TotalMilliseconds;
+			slGra.Maximum = _mediaPlayer.NaturalDuration.TimeSpan.TotalMilliseconds;
+			slGra.Value = _mediaPlayer.Position.TotalMilliseconds;
 		}
 	}
 
@@ -50,20 +51,23 @@ public partial class MainWindow : Window
 		};
 		if (dialog.ShowDialog() == true)
 		{
-			mediaPlayer.Open(new Uri(dialog.FileName));
+			_mediaPlayer.Open(new Uri(dialog.FileName));
 			txtUtwor.Text = String.Format("Utwór: {0}", dialog.FileName);
 			btnPlay.IsEnabled = true;
 			btnPause.IsEnabled = true;
 			btnStop.IsEnabled = true;
-			timer.Start();
+			_timer.Start();
 		}
 	}
 
-	private void btnPlay_Click(object sender, RoutedEventArgs e) => mediaPlayer.Play();
+	private void btnPlay_Click(object sender, RoutedEventArgs e)
+		=> _mediaPlayer.Play();
 
-	private void btnPause_Click(object sender, RoutedEventArgs e) => mediaPlayer.Pause();
+	private void btnPause_Click(object sender, RoutedEventArgs e)
+		=> _mediaPlayer.Pause();
 
-	private void btnStop_Click(object sender, RoutedEventArgs e) => mediaPlayer.Stop();
+	private void btnStop_Click(object sender, RoutedEventArgs e)
+		=> _mediaPlayer.Stop();
 
 	private void radio_Checked(object sender, RoutedEventArgs e)
 	{
@@ -72,11 +76,12 @@ public partial class MainWindow : Window
 		pbGra.Foreground = (SolidColorBrush)new BrushConverter().ConvertFromString(kolor);
 	}
 
-	private void slGra_DragStarted(object sender, DragStartedEventArgs e) => czySuwakJestPrzesuwany = true;
+	private void slGra_DragStarted(object sender, DragStartedEventArgs e)
+		=> _isSliderMovable = true;
 
 	private void slGra_DragCompleted(object sender, DragCompletedEventArgs e)
 	{
-		czySuwakJestPrzesuwany = false;
-		mediaPlayer.Position = TimeSpan.FromMilliseconds(slGra.Value);
+		_isSliderMovable = false;
+		_mediaPlayer.Position = TimeSpan.FromMilliseconds(slGra.Value);
 	}
 }

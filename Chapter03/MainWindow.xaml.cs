@@ -12,7 +12,8 @@ public partial class MainWindow : Window
 	private const string InfoStart = "Wpisz wymiar boku";
 	private const string InfoCorrectNumber = "Wpisz liczbę dodatnią";
 
-	public MainWindow() => InitializeComponent();
+	public MainWindow()
+		=> InitializeComponent();
 
 	private void TxtSide_TextChanged(object sender, TextChangedEventArgs e)
 	{
@@ -45,7 +46,9 @@ public partial class MainWindow : Window
 		MainRectangle.Opacity = ChbOpacity.IsChecked.Value ? 0.5 : 1;
 	}
 
-	private void RbHide_Checked(object sender, RoutedEventArgs e) => MainRectangle.Visibility = Visibility.Collapsed;
+	private void RbHide_Checked(object sender, RoutedEventArgs e)
+		=> MainRectangle.Visibility = Visibility.Collapsed;
 
-	private void RbShow_Checked(object sender, RoutedEventArgs e) => MainRectangle.Visibility = Visibility.Visible;
+	private void RbShow_Checked(object sender, RoutedEventArgs e)
+		=> MainRectangle.Visibility = Visibility.Visible;
 }
