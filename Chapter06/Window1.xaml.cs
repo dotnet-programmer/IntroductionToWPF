@@ -9,12 +9,12 @@ public partial class Window1 : Window
 {
 	private readonly MainWindow _mainWindow;
 	private readonly bool _isNewProduct;
+
 	private Product _newProduct;
 
 	public Window1()
 		=> InitializeComponent();
 
-	// Przeładowana (przeciążona) wersja konstruktora z obiektem dla głównego okna jako argumentem
 	public Window1(MainWindow mainWin, bool isNewProduct = false)
 	{
 		InitializeComponent();
@@ -27,16 +27,12 @@ public partial class Window1 : Window
 	{
 		if (_isNewProduct)
 		{
-			_newProduct = new Product("AA-00", "", 0, "");
+			_newProduct = new("AA-00", "", 0, "");
 			GridProduct.DataContext = _newProduct;
 		}
-		else
+		else if (_mainWindow.LstProducts.SelectedItem is Product productFromList)
 		{
-			if (_mainWindow.LstProducts.SelectedItem is Product productFromList)
-			{
-				// Wybrany produkt z listy
-				GridProduct.DataContext = productFromList;
-			}
+			GridProduct.DataContext = productFromList;
 		}
 	}
 

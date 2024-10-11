@@ -12,32 +12,39 @@ namespace Chapter06;
 /// </summary>
 public partial class MainWindow : Window
 {
-	internal readonly ObservableCollection<Product> _products;
+	internal ObservableCollection<Product> _products;
 
 	public MainWindow()
 	{
 		InitializeComponent();
+		PrepareBinding();
+		PrepareFilter();
+	}
 
-		_products =
-		[
-			new Product("PW-20", "pióro wieczne", 75, "Katowice 2"),
-			new Product("O1-11", "ołówek", 8, "Katowice 1"),
-			new Product("DZ-10", "długopis żelowy", 1121, "Katowice 1"),
-			new Product("DZ-12", "długopis kulkowy", 280, "Katowice 2")
+	private void PrepareBinding()
+	{
+		_products = [
+			new("PW-20", "pióro wieczne", 75, "Katowice 2"),
+			new("O1-11", "ołówek", 8, "Katowice 1"),
+			new("DZ-10", "długopis żelowy", 1121, "Katowice 1"),
+			new("DZ-12", "długopis kulkowy", 280, "Katowice 2")
 		];
 
 		LstProducts.ItemsSource = _products;
+	}
 
+	private void PrepareFilter()
+	{
 		CollectionView view = (CollectionView)CollectionViewSource.GetDefaultView(LstProducts.ItemsSource);
-		view.SortDescriptions.Add(new SortDescription("Warehouse", ListSortDirection.Ascending));
-		view.SortDescriptions.Add(new SortDescription("Name", ListSortDirection.Ascending));
+		view.SortDescriptions.Add(new SortDescription(nameof(Product.Warehouse), ListSortDirection.Ascending));
+		view.SortDescriptions.Add(new SortDescription(nameof(Product.Name), ListSortDirection.Ascending));
 		view.Filter = UserFilter;
 	}
 
-	private bool UserFilter(object item) 
+	private bool UserFilter(object item)
 		=> string.IsNullOrEmpty(TxtFilter.Text) || (item as Product).Name.IndexOf(TxtFilter.Text, StringComparison.OrdinalIgnoreCase) >= 0;
 
-	private void TxtFilter_TextChanged(object sender, TextChangedEventArgs e) 
+	private void TxtFilter_TextChanged(object sender, TextChangedEventArgs e)
 		=> CollectionViewSource.GetDefaultView(LstProducts.ItemsSource).Refresh();
 
 	private void LstProducts_MouseDoubleClick(object sender, System.Windows.Input.MouseButtonEventArgs e)
@@ -52,7 +59,7 @@ public partial class MainWindow : Window
 		window1.ShowDialog();
 	}
 
-	private void BtnDelete_Click(object sender, RoutedEventArgs e) 
+	private void BtnDelete_Click(object sender, RoutedEventArgs e)
 		=> DeleteProduct();
 
 	private void LstProducts_KeyDown(object sender, System.Windows.Input.KeyEventArgs e)
