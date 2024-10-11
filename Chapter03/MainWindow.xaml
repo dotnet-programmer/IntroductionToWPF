@@ -170,14 +170,15 @@
 					Margin="10"
 					HorizontalAlignment="Center">
 
+			<RadioButton x:Name="RbShow"
+						 Content="Pokaż"
+						 IsChecked="True"
+						 Checked="RbShow_Checked"
+						 GroupName="Hiding" />
+
 			<RadioButton x:Name="RbHide"
 						 Content="Ukryj"
 						 Checked="RbHide_Checked"
-						 GroupName="Hiding" />
-
-			<RadioButton x:Name="RbShow"
-						 Content="Pokaż"
-						 Checked="RbShow_Checked"
 						 GroupName="Hiding" />
 		</StackPanel>
 
