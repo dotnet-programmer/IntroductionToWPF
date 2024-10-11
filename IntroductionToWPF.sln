@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.4.33403.182
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Chapter01", "Chapter01\Chapter01.csproj", "{159E60DF-BBAA-482C-9361-4EF469867F2F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Chapter02", "Chapter02\Chapter02.csproj", "{159E60DF-BBAA-482C-9361-4EF469867F2F}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Chapter03", "Chapter03\Chapter03.csproj", "{6C648F1B-9BD1-46C6-A240-5D7B03423DAF}"
 EndProject
@@ -19,9 +19,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Chapter08", "Chapter08\Chap
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Chapter09", "Chapter09\Chapter09.csproj", "{8EE8527D-11CD-4B6B-BC02-C4936EE6F804}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Chapter10", "Chapter10\Chapter10.csproj", "{21EE2919-44CE-48B9-A4B9-7B32AC5F700C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Chapter10", "Chapter10\Chapter10.csproj", "{21EE2919-44CE-48B9-A4B9-7B32AC5F700C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Chapter11", "Chapter11\Chapter11.csproj", "{AE7D610B-71BC-46C8-8582-429A1E3642AC}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Chapter11", "Chapter11\Chapter11.csproj", "{AE7D610B-71BC-46C8-8582-429A1E3642AC}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

@@ -2,29 +2,29 @@
 using System.Windows;
 using System.Windows.Input;
 
-namespace Chapter01;
+namespace Chapter02;
 
 /// <summary>
 /// Interaction logic for MainWindow.xaml
 /// </summary>
 public partial class MainWindow : Window
 {
-	public MainWindow() 
+	public MainWindow()
 		=> InitializeComponent();
 
 	private void BtnStart_Click(object sender, RoutedEventArgs e)
 	{
 		BtnStart.Opacity = 0.2;
-		BtnStart.Visibility = Visibility.Hidden;
+		BtnEnableStart.Visibility = Visibility.Hidden;
 		MessageBox.Show("Hello world");
-		BtnStart.Visibility = Visibility.Visible;
+		BtnEnableStart.Visibility = Visibility.Visible;
 		BtnStart.Opacity = 1;
 	}
 
-	private void BtnTime_MouseEnter(object sender, MouseEventArgs e) 
+	private void BtnTime_MouseEnter(object sender, MouseEventArgs e)
 		=> BtnTime.Content = DateTime.Now.ToString("T");
 
-	private void BtnTime_MouseLeave(object sender, MouseEventArgs e) 
+	private void BtnTime_MouseLeave(object sender, MouseEventArgs e)
 		=> BtnTime.Content = "Time";
 
 	private void BtnEnableStart_Click(object sender, RoutedEventArgs e)
@@ -33,6 +33,6 @@ public partial class MainWindow : Window
 		BtnEnableStart.IsEnabled = false;
 	}
 
-	private void BtnYes_MouseEnter(object sender, MouseEventArgs e) 
+	private void BtnYes_MouseEnter(object sender, MouseEventArgs e)
 		=> (BtnYes.Margin, BtnNo.Margin) = (BtnNo.Margin, BtnYes.Margin);
 }
