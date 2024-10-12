@@ -15,112 +15,113 @@ public partial class MainWindow : Window
 	public MainWindow()
 		=> InitializeComponent();
 
-	// Metody obsługi zdarzeń kliknięcia opcji Menu
+	#region Menu option click event handlers
 
-	// Włączenie ramki
-	private void RamkaOn_Click(object sender, RoutedEventArgs e)
+	private void FrameOn_Click(object sender, RoutedEventArgs e)
 	{
-		if (brdRamka != null)
+		if (WebBrowserFrame != null)
 		{
-			brdRamka.BorderThickness = new Thickness(3);
+			WebBrowserFrame.BorderThickness = new Thickness(3);
 		}
 	}
 
-	// Wyłączenie ramki
-	private void RamkaOff_Click(object sender, RoutedEventArgs e)
+	private void FrameOff_Click(object sender, RoutedEventArgs e)
 	{
-		if (brdRamka != null)
+		if (WebBrowserFrame != null)
 		{
-			brdRamka.BorderThickness = new Thickness(0);
+			WebBrowserFrame.BorderThickness = new Thickness(0);
 		}
 	}
 
-	// Zapisanie strony do pliku
-	private void Zapisz_Click(object sender, RoutedEventArgs e)
+	private void SaveSiteToFile_Click(object sender, RoutedEventArgs e)
 	{
 		Microsoft.Win32.SaveFileDialog dialog = new()
 		{
 			Filter = "WebPage|*.html",
 			DefaultExt = ".html"
 		};
-		dynamic doc = wbPrzegladarka.Document;
-		if (doc != null)
+		dynamic document = MainWebBrowser.Document;
+		if (document != null)
 		{
-			var htmlText = doc.documentElement.InnerHtml;
+			var htmlText = document.documentElement.InnerHtml;
 			if (dialog.ShowDialog() == true && htmlText != null)
 			{
-				// File wymaga using System.IO;
 				File.WriteAllText(dialog.FileName, htmlText);
 			}
 		}
 	}
 
-	// Tymczasowa metoda dla niegotowych opcji
-	private void Tmp_Click(object sender, RoutedEventArgs e)
+	private void PlaceholderMethod_Click(object sender, RoutedEventArgs e)
 		=> MessageBox.Show("Opcja w budowie");
 
-	// Informacje o programie
-	private void OProgramie_Click(object sender, RoutedEventArgs e)
-		=> MessageBox.Show("Prosta przeglądarka www, Wersja 1.0, Helion 2017");
+	private void About_Click(object sender, RoutedEventArgs e)
+		=> MessageBox.Show("Prosta przeglądarka www, Wersja 1.0");
 
-	// Wyjście  (zamknięcie okna aplikacji)
 	private void Exit_Click(object sender, RoutedEventArgs e)
 		=> Close();
 
-	// Metody obsługi zdarzeń dla kontrolek umieszczonych w ToolBar
-	private void btnWejdz_Click(object sender, RoutedEventArgs e)
-		=> wbPrzegladarka.Navigate(txtAdres.Text);
+	#endregion Menu option click event handlers
 
-	private void btnWstecz_Click(object sender, RoutedEventArgs e)
+	#region ToolBar option click event handlers
+
+	private void BtnBack_Click(object sender, RoutedEventArgs e)
 	{
-		if (wbPrzegladarka.CanGoBack)
+		if (MainWebBrowser.CanGoBack)
 		{
-			wbPrzegladarka.GoBack();
+			MainWebBrowser.GoBack();
 		}
 	}
 
-	private void btnDalej_Click(object sender, RoutedEventArgs e)
+	private void BtnNext_Click(object sender, RoutedEventArgs e)
 	{
-		if (wbPrzegladarka.CanGoForward)
+		if (MainWebBrowser.CanGoForward)
 		{
-			wbPrzegladarka.GoForward();
+			MainWebBrowser.GoForward();
 		}
 	}
 
-	private void txtAdres_KeyUp(object sender, KeyEventArgs e)
+	private void TxtAddress_KeyUp(object sender, KeyEventArgs e)
 	{
 		if (e.Key == Key.Enter)
 		{
-			wbPrzegladarka.Navigate(txtAdres.Text);
+			MainWebBrowser.Navigate(TxtAddress.Text);
 		}
 	}
 
-	// Metody obsługi zdarzeń dla kontrolki WebBrowser (Navigating i Navigated)
-	private void wbPrzegladarka_Navigating(object sender, System.Windows.Navigation.NavigatingCancelEventArgs e)
-		=> txtAdres.Text = e.Uri.OriginalString;   // Aktualizacja pola tekstowego z adresem
+	private void BtnEnter_Click(object sender, RoutedEventArgs e)
+		=> MainWebBrowser.Navigate(TxtAddress.Text);
+
+	private void BtnTreeView_Click(object sender, RoutedEventArgs e)
+	{
+		TreeViewTest window = new();
+		window.ShowDialog();
+	}
+
+	#endregion ToolBar option click event handlers
+
+	#region WebBrowser option click event handlers
+
+	// Aktualizacja pola tekstowego z adresem
+	private void MainWebBrowser_Navigating(object sender, NavigatingCancelEventArgs e)
+		=> TxtAddress.Text = e.Uri.OriginalString;
 
 	// Wywołanie metody ukrywającej błędy JavaScriptu
+	private void MainWebBrowser_Navigated(object sender, NavigationEventArgs e)
+		=> HideScriptErrors(MainWebBrowser, true);
 
-	private void wbPrzegladarka_Navigated(object sender, NavigationEventArgs e)
-		=> HideScriptErrors(wbPrzegladarka, true);
-
+	// Ukrycie błędów JavaScriptu, rozwiązanie ze strony MSDN "Suppress Script Errors in Windows.Controls.Webbrowser"
+	// Typ wyliczeniowy BindingFlags wymaga przestrzeni nazw using System.Reflection;
 	public void HideScriptErrors(WebBrowser wb, bool Hide)
 	{
-		// Ukrycie błędów JavaScriptu, rozwiązanie ze strony MSDN "Suppress Script Errors in Windows.Controls.Webbrowser"
-		// Typ wyliczeniowy BindingFlags wymaga przestrzeni nazw using System.Reflection;
-		dynamic activeX = wbPrzegladarka.GetType().InvokeMember(
+		dynamic activeX = MainWebBrowser.GetType().InvokeMember(
 			"ActiveXInstance",
 			BindingFlags.GetProperty | BindingFlags.Instance | BindingFlags.NonPublic,
 			null,
-			this.wbPrzegladarka,
-			new object[] { });
+			MainWebBrowser,
+			System.Array.Empty<object>());
 
 		activeX.Silent = true;
 	}
 
-	private void BtnNewWindow_Click(object sender, RoutedEventArgs e)
-	{
-		var window = new Window1();
-		window.ShowDialog();
-	}
+	#endregion WebBrowser option click event handlers
 }
