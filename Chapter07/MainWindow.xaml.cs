@@ -13,6 +13,10 @@ namespace Chapter07;
 public partial class MainWindow : Window
 {
 	private ObservableCollection<Product> _products;
+
+	// Format Pack URI jest częścią specyfikacji XML Paper Specification (XPS).
+	// Format ten jest definiowany jako: pack://URIPakietu/fragment_ścieżki.
+	// zob.także(„Pack URIs in WPF”)
 	private readonly string _path = "pack://application:,,,/Images/";
 
 	public MainWindow()
@@ -25,14 +29,14 @@ public partial class MainWindow : Window
 	{
 		_products =
 		[
-			new Product("O1-11", "ołówek", 8, "Katowice 1", new Uri(_path + "Confirm.png"), "Ołówek z gumką HB"),
-			new Product("PW-20", "pióro wieczne", 75, "Katowice 2", new Uri(_path + "Cancel_1.png"), "Pióro ze złotą stalówką"),
-			new Product("DZ-10", "długopis żelowy", 1121, "Katowice 1", new Uri(_path + "Cancel_2.png"), "Długopis z wkładem żelowym"),
-			new Product("DZ-12", "długopis kulkowy", 280, "Katowice 2", new Uri(_path + "Refresh_2b.png"), "Długopis z wkładem kulkowym")
+			new("O1-11", "ołówek", 8, "Katowice 1", new Uri(_path + "Confirm.png"), "Ołówek z gumką HB"),
+			new("PW-20", "pióro wieczne", 75, "Katowice 2", new Uri(_path + "Cancel_1.png"), "Pióro ze złotą stalówką"),
+			new("DZ-10", "długopis żelowy", 1121, "Katowice 1", new Uri(_path + "Cancel_2.png"), "Długopis z wkładem żelowym"),
+			new("DZ-12", "długopis kulkowy", 280, "Katowice 2", new Uri(_path + "Refresh_2b.png"), "Długopis z wkładem kulkowym")
 		];
-
 		GridProducts.ItemsSource = _products;
 
+		// dane wyświetlane w combo box w kolumnie magazyn
 		ObservableCollection<string> warehouses = ["Katowice 1", "Katowice 2", "Gliwice 1"];
 		WarehouseName.ItemsSource = warehouses;
 
@@ -42,7 +46,7 @@ public partial class MainWindow : Window
 
 	private void Button_Click(object sender, RoutedEventArgs e)
 	{
-		var window = new Window1();
+		ProductsFromXml window = new();
 		window.ShowDialog();
 	}
 
@@ -52,9 +56,9 @@ public partial class MainWindow : Window
 		{
 			Title = "Wybierz zdjęcie",
 			Filter = "Image files (*.jpg,*.png;*.jpeg)|*.jpg;*.png;*.jpeg|All files(*.*) | *.* ",
-
 			InitialDirectory = @"C:\"
 		};
+
 		if (dialog.ShowDialog() == true)
 		{
 			(GridProducts.SelectedItem as Product).Image = new Uri(dialog.FileName);

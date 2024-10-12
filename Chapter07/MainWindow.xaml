@@ -125,7 +125,6 @@
 
 		<Expander Grid.Row="2"
 				  Header="Adres korespondencyjny">
-
 			<StackPanel>
 				<TextBlock Text="Miasto:" />
 				<TextBlock Text="Ulica:" />
