@@ -14,17 +14,19 @@ namespace Chapter09;
 public partial class MainWindow : Window
 {
 	private readonly MediaPlayer _mediaPlayer = new();
-	private readonly DispatcherTimer _timer;
+	private readonly DispatcherTimer _timer = new();
 
 	private bool _isSliderMovable = false;
 
 	public MainWindow()
 	{
 		InitializeComponent();
-		_timer = new DispatcherTimer
-		{
-			Interval = TimeSpan.FromMilliseconds(500)
-		};
+		SetTimer();
+	}
+
+	private void SetTimer()
+	{
+		_timer.Interval = TimeSpan.FromMilliseconds(500);
 		_timer.Tick += new EventHandler(TimerTick);
 	}
 
@@ -32,56 +34,58 @@ public partial class MainWindow : Window
 	{
 		if (_mediaPlayer.Source != null && _mediaPlayer.NaturalDuration.HasTimeSpan && !_isSliderMovable)
 		{
-			txtCzas.Text = _mediaPlayer.Position.ToString(@"mm\:ss");
+			TxtTime.Text = _mediaPlayer.Position.ToString(@"mm\:ss");
+
 			// Ustawienia dla ProgressBar
 			TimeSpan ts = _mediaPlayer.NaturalDuration.TimeSpan;
-			pbGra.Maximum = 100;
-			pbGra.Value = ((double)_mediaPlayer.Position.TotalMilliseconds / ts.TotalMilliseconds) * 100;
+			ProgressBarElapsedTime.Maximum = 100;
+			ProgressBarElapsedTime.Value = ((double)_mediaPlayer.Position.TotalMilliseconds / ts.TotalMilliseconds) * 100;
+
 			// Ustawienia dla Slider
-			slGra.Maximum = _mediaPlayer.NaturalDuration.TimeSpan.TotalMilliseconds;
-			slGra.Value = _mediaPlayer.Position.TotalMilliseconds;
+			SliderElapsedTime.Maximum = _mediaPlayer.NaturalDuration.TimeSpan.TotalMilliseconds;
+			SliderElapsedTime.Value = _mediaPlayer.Position.TotalMilliseconds;
 		}
 	}
 
-	private void btnWybierz_Click(object sender, RoutedEventArgs e)
+	private void BtnSelectFile_Click(object sender, RoutedEventArgs e)
 	{
 		OpenFileDialog dialog = new()
 		{
 			Filter = "MP3 files (*.mp3)|*.mp3|All files (*.*)|*.*"
 		};
+
 		if (dialog.ShowDialog() == true)
 		{
 			_mediaPlayer.Open(new Uri(dialog.FileName));
-			txtUtwor.Text = String.Format("Utwór: {0}", dialog.FileName);
-			btnPlay.IsEnabled = true;
-			btnPause.IsEnabled = true;
-			btnStop.IsEnabled = true;
+			TxtSong.Text = $"Utwór: {dialog.FileName}";
+			BtnPlay.IsEnabled = true;
+			BtnPause.IsEnabled = true;
+			BtnStop.IsEnabled = true;
 			_timer.Start();
 		}
 	}
 
-	private void btnPlay_Click(object sender, RoutedEventArgs e)
+	private void BtnPlay_Click(object sender, RoutedEventArgs e)
 		=> _mediaPlayer.Play();
 
-	private void btnPause_Click(object sender, RoutedEventArgs e)
+	private void BtnPause_Click(object sender, RoutedEventArgs e)
 		=> _mediaPlayer.Pause();
 
-	private void btnStop_Click(object sender, RoutedEventArgs e)
+	private void BtnStop_Click(object sender, RoutedEventArgs e)
 		=> _mediaPlayer.Stop();
 
-	private void radio_Checked(object sender, RoutedEventArgs e)
+	private void RadioColor_Checked(object sender, RoutedEventArgs e)
 	{
-		var radio = sender as RadioButton;
-		string kolor = (radio.Content.ToString() == "Niebieski") ? "LightSkyBlue" : "LightGreen";
-		pbGra.Foreground = (SolidColorBrush)new BrushConverter().ConvertFromString(kolor);
+		string color = ((sender as RadioButton).Content.ToString() == "Niebieski") ? "LightSkyBlue" : "LightGreen";
+		ProgressBarElapsedTime.Foreground = (SolidColorBrush)new BrushConverter().ConvertFromString(color);
 	}
 
-	private void slGra_DragStarted(object sender, DragStartedEventArgs e)
+	private void SliderElapsedTime_DragStarted(object sender, DragStartedEventArgs e)
 		=> _isSliderMovable = true;
 
-	private void slGra_DragCompleted(object sender, DragCompletedEventArgs e)
+	private void SliderElapsedTime_DragCompleted(object sender, DragCompletedEventArgs e)
 	{
 		_isSliderMovable = false;
-		_mediaPlayer.Position = TimeSpan.FromMilliseconds(slGra.Value);
+		_mediaPlayer.Position = TimeSpan.FromMilliseconds(SliderElapsedTime.Value);
 	}
 }
