@@ -1,7 +1,7 @@
 ﻿<Window x:Class="Chapter11.MainWindow"
 		xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-		xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
 		xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+		xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
 		xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
 		xmlns:local="clr-namespace:Chapter11"
 		mc:Ignorable="d"
@@ -12,27 +12,24 @@
 
 	<Window.Resources>
 		<local:ColorPlToColorEnConverter x:Key="colorPlToColorEnConverter" />
-		<local:PriorityToForegroundConverter x:Key="priorytetKonwerter" />
+		<local:PriorityToForegroundConverter x:Key="priorityToForegroundConverter" />
 	</Window.Resources>
 
 	<!--<StackPanel>
 		<StackPanel.Resources>
-			<local:KolekcjaZadan x:Key="listaZadanDoWykonania"/>
+			<local:TaskCollection x:Key="ToDoList" />
 		</StackPanel.Resources>
-		
-		<TextBlock FontSize="14" Text="Lista zadań:" Margin="10,0"/>
-		
-		-->
-	<!--<ListBox Margin="10" ItemsSource="{Binding Source={StaticResource listaZadanDoWykonania}}"/>-->
-	<!--
-		
-		<ListBox Margin="10" ItemsSource="{Binding Source={StaticResource listaZadanDoWykonania}}">
+		<TextBlock FontSize="14" Text="Lista zadań:" Margin="10,0" />-->
+
+	<!--<ListBox Margin="10" ItemsSource="{Binding Source={StaticResource ToDoList}}" />-->
+
+	<!--<ListBox Margin="10" ItemsSource="{Binding Source={StaticResource ToDoList}}">
 			<ListBox.ItemTemplate>
 				<DataTemplate>
 					<StackPanel>
-						<TextBlock Text="{Binding Path=Nazwa}" FontWeight="Bold"/>
-						<TextBlock Text="{Binding Path=Opis}"/>
-						<TextBlock Text="{Binding Path=Priorytet}"/>
+						<TextBlock Text="{Binding Path=Name}" FontWeight="Bold" />
+						<TextBlock Text="{Binding Path=Description}" />
+						<TextBlock Text="{Binding Path=Priority}" />
 					</StackPanel>
 				</DataTemplate>
 			</ListBox.ItemTemplate>
@@ -41,17 +38,17 @@
 
 	<!--<StackPanel>
 		<StackPanel.Resources>
-			<local:KolekcjaZadan x:Key="listaZadanDoWykonania"/>
-			<DataTemplate x:Key="szablonZadan">
+			<local:TaskCollection x:Key="ToDoList" />
+			<DataTemplate x:Key="TasksTemplate">
 				<StackPanel>
-					<TextBlock Text="{Binding Path=Nazwa}" FontWeight="Bold" />
-					<TextBlock Text="{Binding Path=Opis}"/>
-					<TextBlock Text="{Binding Path=Priorytet}"/>
+					<TextBlock Text="{Binding Path=Name}" FontWeight="Bold" />
+					<TextBlock Text="{Binding Path=Description}" />
+					<TextBlock Text="{Binding Path=Priority}" />
 				</StackPanel>
 			</DataTemplate>
 		</StackPanel.Resources>
-		<TextBlock FontSize="14" Text="Lista zadań:" Margin="10,0"/>
-		<ListBox Margin="10" ItemsSource="{Binding Source={StaticResource listaZadanDoWykonania}}" ItemTemplate="{StaticResource szablonZadan}"/>
+		<TextBlock FontSize="14" Text="Lista zadań:" Margin="10,0" />
+		<ListBox Margin="10" ItemsSource="{Binding Source={StaticResource ToDoList}}" ItemTemplate="{StaticResource TasksTemplate}" />
 	</StackPanel>-->
 
 	<Grid>
@@ -71,18 +68,18 @@
 			   Content="Kolor"
 			   Margin="5" />
 
-		<ComboBox x:Name="cmbKolor"
+		<ComboBox x:Name="CbColor"
 				  Grid.Row="0"
 				  Grid.Column="1"
 				  SelectedIndex="0"
 				  HorizontalAlignment="Left"
 				  Width="145"
 				  Margin="5">
-			<ComboBoxItem Content="Czarny"></ComboBoxItem>
-			<ComboBoxItem Content="Czerwony"></ComboBoxItem>
-			<ComboBoxItem Content="Żółty"></ComboBoxItem>
-			<ComboBoxItem Content="Zielony"></ComboBoxItem>
-			<ComboBoxItem Content="Niebieski"></ComboBoxItem>
+			<ComboBoxItem Content="Czarny" />
+			<ComboBoxItem Content="Czerwony" />
+			<ComboBoxItem Content="Żółty" />
+			<ComboBoxItem Content="Zielony" />
+			<ComboBoxItem Content="Niebieski" />
 		</ComboBox>
 
 		<TextBlock Grid.Row="1"
@@ -91,23 +88,23 @@
 				   Margin="5"
 				   Text="Testujemy konwerter wartości"
 				   FontSize="30"
-				   Foreground="{Binding Path=SelectedItem.Content, ElementName=cmbKolor, Converter={StaticResource colorPlToColorEnConverter}}" />
+				   Foreground="{Binding ElementName=CbColor, Path=SelectedItem.Content, Converter={StaticResource colorPlToColorEnConverter}}" />
 
 		<StackPanel Grid.Row="2">
 			<StackPanel.Resources>
-				<local:TaskCollection x:Key="listaZadanDoWykonania" />
-				<DataTemplate x:Key="szablonZadan">
+				<local:TaskCollection x:Key="ToDoList" />
+				<DataTemplate x:Key="TasksTemplate">
 					<DataTemplate.Triggers>
-						<!--<DataTrigger Binding="{Binding Path=Priorytet}" Value="1">
-							<Setter Property="TextBlock.Foreground" Value="Red"/>
+						<!--<DataTrigger Binding="{Binding Path=Priority}" Value="1">
+							<Setter Property="TextBlock.Foreground" Value="Red" />
 						</DataTrigger>-->
 					</DataTemplate.Triggers>
 					<StackPanel>
-						<TextBlock Text="{Binding Path=Nazwa}"
+						<TextBlock Text="{Binding Path=Name}"
 								   FontWeight="Bold"
-								   Foreground="{Binding Priorytet, Converter={StaticResource priorytetKonwerter}}" />
-						<TextBlock Text="{Binding Path=Opis}" />
-						<TextBlock Text="{Binding Path=Priorytet}" />
+								   Foreground="{Binding Priority, Converter={StaticResource priorityToForegroundConverter}}" />
+						<TextBlock Text="{Binding Description}" />
+						<TextBlock Text="{Binding Priority}" />
 					</StackPanel>
 				</DataTemplate>
 			</StackPanel.Resources>
@@ -115,8 +112,8 @@
 					   Text="Lista zadań:"
 					   Margin="10,0" />
 			<ListBox Margin="10"
-					 ItemsSource="{Binding Source={StaticResource listaZadanDoWykonania}}"
-					 ItemTemplate="{StaticResource szablonZadan}" />
+					 ItemsSource="{Binding Source={StaticResource ToDoList}}"
+					 ItemTemplate="{StaticResource TasksTemplate}" />
 		</StackPanel>
 
 		<Button Grid.Row="3"
@@ -126,5 +123,4 @@
 				Content="Szablony kontrolek"
 				Click="Button_Click" />
 	</Grid>
-
 </Window>

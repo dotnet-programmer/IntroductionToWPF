@@ -13,7 +13,7 @@ internal class PriorityToForegroundConverter : IValueConverter
 			throw new InvalidOperationException("Celem powinien być typ Brush");
 		}
 		int priority = int.Parse(value.ToString());
-		return (priority == 1 ? Brushes.Red : Brushes.Black);
+		return priority == 1 ? Brushes.Red : Brushes.Black;
 	}
 
 	public object ConvertBack(object value, Type targetType, object parameter, System.Globalization.CultureInfo culture)

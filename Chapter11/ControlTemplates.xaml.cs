@@ -11,5 +11,5 @@ public partial class ControlTemplates : Window
 		=> InitializeComponent();
 
 	private void Button_Click(object sender, RoutedEventArgs e)
-		=> MessageBox.Show("Zapisano dane!");
+		=> MessageBox.Show("Przycisk działa!");
 }
