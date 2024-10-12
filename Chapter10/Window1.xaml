@@ -14,29 +14,29 @@
 		<WrapPanel>
 			<WrapPanel.Resources>
 				<Style x:Key="stylPrzyciskow">
-					<Setter Property="Button.Margin" Value="10"/>
-					<Setter Property="Button.Padding" Value="10"/>
-					<Setter Property="Button.FontSize" Value="12"/>
-					<Setter Property="Button.FontWeight" Value="Bold"/>
-					<Setter Property="Button.FontStyle" Value="Italic"/>
-					<Setter Property="Button.BorderBrush" Value="Black"/>
-					<Setter Property="Button.BorderThickness" Value="2"/>
+					<Setter Property="Button.Margin" Value="10" />
+					<Setter Property="Button.Padding" Value="10" />
+					<Setter Property="Button.FontSize" Value="12" />
+					<Setter Property="Button.FontWeight" Value="Bold" />
+					<Setter Property="Button.FontStyle" Value="Italic" />
+					<Setter Property="Button.BorderBrush" Value="Black" />
+					<Setter Property="Button.BorderThickness" Value="2" />
 					<Setter Property="Button.Background">
 						<Setter.Value>
 							<LinearGradientBrush StartPoint="0.5,0" EndPoint="0.5,1">
-								<GradientStop Color="White" Offset="0"/>
-								<GradientStop Color="Gray" Offset="1"/>
+								<GradientStop Color="White" Offset="0" />
+								<GradientStop Color="Gray" Offset="1" />
 							</LinearGradientBrush>
 						</Setter.Value>
 					</Setter>
 				</Style>
 			</WrapPanel.Resources>
-			<Button Content="Potwierdź" Style="{StaticResource stylPrzyciskow}"/>
-			<Button Content="Drukuj" Style="{StaticResource stylPrzyciskow}"/>
-			<Button Content="Usuń" Style="{StaticResource stylPrzyciskow}"/>
-			<Button Content="Zapisz" Style="{StaticResource stylPrzyciskow}"/>
-			<Button Content="Anuluj" Style="{StaticResource stylPrzyciskow}"/>
-			<Button Content="Powrót" Style="{StaticResource stylPrzyciskow}"/>
+			<Button Content="Potwierdź" Style="{StaticResource stylPrzyciskow}" />
+			<Button Content="Drukuj" Style="{StaticResource stylPrzyciskow}" />
+			<Button Content="Usuń" Style="{StaticResource stylPrzyciskow}" />
+			<Button Content="Zapisz" Style="{StaticResource stylPrzyciskow}" />
+			<Button Content="Anuluj" Style="{StaticResource stylPrzyciskow}" />
+			<Button Content="Powrót" Style="{StaticResource stylPrzyciskow}" />
 		</WrapPanel>
 	</Grid>-->
 

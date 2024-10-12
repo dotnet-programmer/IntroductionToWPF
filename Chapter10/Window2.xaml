@@ -10,22 +10,19 @@
 		Width="400"
 		WindowStartupLocation="CenterScreen">
 
-	<!--<Window.Resources>
+	<Window.Resources>
 		<Style TargetType="{x:Type TextBlock}">
-			<Setter Property="FontSize" Value="20"/>
-			<Setter Property="Foreground" Value="Blue"/>
+			<Setter Property="FontSize" Value="20" />
+			<Setter Property="Foreground" Value="Blue" />
 			<Style.Triggers>
 				<Trigger Property="IsMouseOver" Value="True">
-					<Setter Property="FontSize" Value="30"/>
-					<Setter Property="Foreground" Value="Green"/>
-					<Setter Property="FontWeight" Value="Bold"/>
+					<Setter Property="FontSize" Value="30" />
+					<Setter Property="Foreground" Value="Green" />
+					<Setter Property="FontWeight" Value="Bold" />
 				</Trigger>
 			</Style.Triggers>
 		</Style>
 	</Window.Resources>
-	<StackPanel>
-		<TextBlock Text="Testujemy wyzwalacz"/>
-	</StackPanel>-->
 
 	<StackPanel>
 		<StackPanel.Resources>
@@ -68,6 +65,11 @@
 				</Style.Triggers>
 			</Style>
 		</StackPanel.Resources>
+
+		<WrapPanel>
+			<TextBlock Text="Testujemy wyzwalacz" />
+		</WrapPanel>
+
 		<CheckBox x:Name="cbOn"
 				  Content="Zmień kolor i rozmiar"
 				  Margin="5" />
@@ -77,5 +79,4 @@
 			<TextBox Style="{StaticResource stylPolaTekstowego}" />
 		</WrapPanel>
 	</StackPanel>
-
 </Window>

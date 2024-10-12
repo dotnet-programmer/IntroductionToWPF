@@ -1,32 +1,37 @@
 ﻿<Window x:Class="Chapter10.MainWindow"
-		xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-		xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-		xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-		xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-		xmlns:local="clr-namespace:Chapter10"
-		mc:Ignorable="d"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        mc:Ignorable="d"
 		Title="MainWindow"
 		Height="200"
 		Width="500"
 		WindowStartupLocation="CenterScreen">
 
+	<!--
+		Odwołanie do zasobów:
+		<Image Source="Rysunki/glosnik.png" />
+		lub z użyciem formatu Pack URI:
+		<Image Source="pack://application:,,,/Rysunki/glosnik.png" />
+	-->
+
 	<!--<Window.Resources>
 		<LinearGradientBrush x:Key="tloPrzyciskow" StartPoint="0.5,0" EndPoint="0.5,1">
-			<GradientStop Color="White" Offset="0"/>
-			<GradientStop Color="LightBlue" Offset="1"/>
+			<GradientStop Color="White" Offset="0" />
+			<GradientStop Color="LightBlue" Offset="1" />
 		</LinearGradientBrush>
 
 		<Style TargetType="Button">
-			<Setter Property="Background" Value="{StaticResource tloPrzyciskow}"/>
+			<Setter Property="Background" Value="{StaticResource tloPrzyciskow}" />
 		</Style>
-		
 	</Window.Resources>
-	
+
 	<Window.Resources>
     <ResourceDictionary>
         <ResourceDictionary.MergedDictionaries>
-            <ResourceDictionary Source="nazwaPliku1.xaml"/>
-            <ResourceDictionary Source="nazwaPliku2.xaml"/>
+            <ResourceDictionary Source="nazwaPliku1.xaml" />
+            <ResourceDictionary Source="nazwaPliku2.xaml" />
         </ResourceDictionary.MergedDictionaries>
     </ResourceDictionary>
 	</Window.Resources>
@@ -37,28 +42,26 @@
 	<!--<Button Content="Potwierdź" Margin="10" Padding="10">
 				<Button.Background>
 					<LinearGradientBrush StartPoint="0.5,0" EndPoint="0.5,1">
-						<GradientStop Color="White" Offset="0"/>
-						<GradientStop Color="LightBlue" Offset="1"/>
+						<GradientStop Color="White" Offset="0" />
+						<GradientStop Color="LightBlue" Offset="1" />
 					</LinearGradientBrush>
 				</Button.Background>
 			</Button>-->
 
-	<!--<Button Content="Potwierdź" Background="{StaticResource tloPrzyciskow}" Margin="10" Padding="10"/>
-			<Button Content="Drukuj" Background="{StaticResource tloPrzyciskow}" Margin="10" Padding="10"/>
-			<Button Content="Zapisz" Background="{StaticResource tloPrzyciskow}" Margin="10" Padding="10"/>
-			<Button Content="Anuluj" Background="{StaticResource tloPrzyciskow}" Margin="10" Padding="10"/>
-			<Button Content="Powrót" Background="{StaticResource tloPrzyciskow}" Margin="10" Padding="10"/>-->
+	<!--<Button Content="Potwierdź" Background="{StaticResource tloPrzyciskow}" Margin="10" Padding="10" />
+			<Button Content="Drukuj" Background="{StaticResource tloPrzyciskow}" Margin="10" Padding="10" />
+			<Button Content="Zapisz" Background="{StaticResource tloPrzyciskow}" Margin="10" Padding="10" />
+			<Button Content="Anuluj" Background="{StaticResource tloPrzyciskow}" Margin="10" Padding="10" />
+			<Button Content="Powrót" Background="{StaticResource tloPrzyciskow}" Margin="10" Padding="10" />-->
 	<!--
 
-			<Button Content="Potwierdź" Margin="10" Padding="10"/>
+			<Button Content="Potwierdź" Margin="10" Padding="10" />
 			<Button Content="Drukuj" Margin="10" Padding="10" />
 			<Button Content="Zapisz" Margin="10" Padding="10" />
-			<Button Content="Anuluj" Margin="10" Padding="10"/>
-			<Button Content="Powrót" Margin="10" Padding="10"/>
+			<Button Content="Anuluj" Margin="10" Padding="10" />
+			<Button Content="Powrót" Margin="10" Padding="10" />
 		</WrapPanel>
 	</Grid>-->
-
-
 
 	<Window.Resources>
 		<LinearGradientBrush x:Key="tloPrzyciskow"
@@ -113,16 +116,18 @@
 					Background="{StaticResource tloPrzyciskow}"
 					Margin="10"
 					Padding="10" />
-			<Button Content="Anuluj"
+			<Button Content="Window1"
 					Background="{StaticResource tloPrzyciskow}"
 					Margin="10"
-					Padding="10" />
-			<Button Content="Powrót"
+					Padding="10"
+					Click="Button_Click" />
+			<Button Content="Window2"
 					Background="{StaticResource tloPrzyciskow}"
 					Margin="10"
-					Padding="10" />
+					Padding="10"
+					Click="Button_Click_1" />
 		</WrapPanel>
-		<!--<Button Grid.Row="1" Grid.Column="0" Content="Nowy Przycisk" Margin="10" Padding="10"/>-->
+		<!--<Button Grid.Row="1" Grid.Column="0" Content="Nowy Przycisk" Margin="10" Padding="10" />-->
 		<Button Grid.Row="1"
 				Grid.Column="0"
 				Content="Nowy Przycisk"
@@ -132,5 +137,4 @@
 				Padding="10" />
 		<StaticResource ResourceKey="obrazek" />
 	</Grid>
-
 </Window>
