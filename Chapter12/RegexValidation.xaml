@@ -1,0 +1,78 @@
+﻿<Window x:Class="Chapter12.RegexValidation"
+		xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+		xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+		xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+		xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+		xmlns:local="clr-namespace:Chapter12"
+		mc:Ignorable="d"
+		Title="RegexValidation"
+		Height="200"
+		Width="500"
+		WindowStartupLocation="CenterScreen">
+
+	<Window.DataContext>
+		<local:Person Surname="Kowalski"
+					  Name="Jan Andrzej"
+					  Pesel="01234567890"
+					  PostalCode="40-000" />
+	</Window.DataContext>
+
+	<Window.Resources>
+		<Style TargetType="{x:Type TextBox}">
+			<Setter Property="Margin"
+					Value="5" />
+			<Setter Property="Width"
+					Value="120" />
+			<Setter Property="Validation.ErrorTemplate">
+				<Setter.Value>
+					<ControlTemplate>
+						<WrapPanel>
+							<AdornedElementPlaceholder />
+							<TextBlock Text="{Binding CurrentItem.ErrorContent}"
+									   Foreground="Red"
+									   Margin="5,0" />
+						</WrapPanel>
+					</ControlTemplate>
+				</Setter.Value>
+			</Setter>
+		</Style>
+	</Window.Resources>
+
+	<Grid>
+		<Grid.RowDefinitions>
+			<RowDefinition Height="Auto" />
+			<RowDefinition Height="Auto" />
+			<RowDefinition Height="Auto" />
+			<RowDefinition Height="Auto" />
+		</Grid.RowDefinitions>
+		<Grid.ColumnDefinitions>
+			<ColumnDefinition Width="Auto" />
+			<ColumnDefinition Width="Auto" />
+		</Grid.ColumnDefinitions>
+
+		<Label Content="Nazwisko:"
+			   Grid.Row="0"
+			   Grid.Column="0" />
+		<TextBox Text="{Binding Surname, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}"
+				 Grid.Row="0"
+				 Grid.Column="1" />
+		<Label Content="Imiona:"
+			   Grid.Row="1"
+			   Grid.Column="0" />
+		<TextBox Text="{Binding Name, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}"
+				 Grid.Row="1"
+				 Grid.Column="1" />
+		<Label Content="Pesel:"
+			   Grid.Row="2"
+			   Grid.Column="0" />
+		<TextBox Text="{Binding Pesel, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}"
+				 Grid.Row="2"
+				 Grid.Column="1" />
+		<Label Content="Kod pocztowy:"
+			   Grid.Row="3"
+			   Grid.Column="0" />
+		<TextBox Text="{Binding PostalCode, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}"
+				 Grid.Row="3"
+				 Grid.Column="2" />
+	</Grid>
+</Window>

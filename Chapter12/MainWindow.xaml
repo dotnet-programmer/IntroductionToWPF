@@ -1,0 +1,139 @@
+﻿<Window x:Class="Chapter12.MainWindow"
+		xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+		xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+		xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+		xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+		xmlns:local="clr-namespace:Chapter12"
+		mc:Ignorable="d"
+		Title="Walidacja danych (wersja 1)"
+		Height="250"
+		Width="600"
+		Language="pl-PL"
+		WindowStartupLocation="CenterScreen">
+
+	<Window.DataContext>
+		<local:Article Name="ołówek"
+					   Price="21" />
+	</Window.DataContext>
+
+	<Window.Resources>
+		<Style x:Key="UsingIDataErrorInfo"
+			   TargetType="{x:Type TextBox}">
+			<Setter Property="Margin"
+					Value="5" />
+			<Setter Property="Width"
+					Value="100" />
+			<Setter Property="Validation.ErrorTemplate">
+				<Setter.Value>
+					<ControlTemplate>
+						<StackPanel>
+							<AdornedElementPlaceholder />
+							<TextBlock Text="{Binding CurrentItem.ErrorContent}"
+									   Foreground="Red" />
+						</StackPanel>
+					</ControlTemplate>
+				</Setter.Value>
+			</Setter>
+		</Style>
+	</Window.Resources>
+
+	<StackPanel>
+		<WrapPanel>
+			<Label Content="Nazwa:" />
+			<TextBox Margin="5"
+					 Text="{Binding Name}"
+					 Width="100" />
+			<Label Content="Cena:" />
+			<TextBox Margin="5"
+					 Text="{Binding Price, UpdateSourceTrigger=PropertyChanged, StringFormat={}{0:F2}}"
+					 Width="100" />
+			<Label Content="Wbudowany mechanizm walidacji danych" />
+		</WrapPanel>
+
+		<WrapPanel>
+			<WrapPanel.Resources>
+				<Style TargetType="TextBox">
+					<Style.Triggers>
+						<Trigger Property="Validation.HasError"
+								 Value="true">
+							<Setter Property="ToolTip"
+									Value="{Binding RelativeSource={x:Static RelativeSource.Self}, Path=(Validation.Errors).CurrentItem.ErrorContent}" />
+						</Trigger>
+					</Style.Triggers>
+				</Style>
+			</WrapPanel.Resources>
+
+			<Label Content="Nazwa:" />
+			<TextBox Margin="5"
+					 Text="{Binding Name}"
+					 Width="100" />
+			<Label Content="Cena:" />
+			<TextBox Margin="5"
+					 Text="{Binding Price, UpdateSourceTrigger=PropertyChanged, StringFormat={}{0:F2}}"
+					 Width="100" />
+			<Label Content="Komunikat o błędzie jako ToolTip (dymek)" />
+		</WrapPanel>
+
+		<WrapPanel>
+			<Label Content="Nazwa:" />
+			<TextBox Margin="5"
+					 Text="{Binding Name}"
+					 Width="100" />
+			<Label Content="Cena:" />
+			<TextBox x:Name="TbPrice"
+					 Text="{Binding Price, UpdateSourceTrigger=PropertyChanged, StringFormat={}{0:F2}}"
+					 Margin="5"
+					 Width="100">
+				<Validation.ErrorTemplate>
+					<ControlTemplate>
+						<StackPanel>
+							<Border BorderBrush="Red"
+									BorderThickness="1"
+									Width="100">
+								<!-- AdornedElementPlaceholder określa miejsce, w którym znajduje się element z walidowaną wartością (tu ceną) względem innych elementów szablonu. -->
+								<AdornedElementPlaceholder />
+							</Border>
+							<TextBlock Text="{Binding CurrentItem.ErrorContent}"
+									   Foreground="Red" />
+						</StackPanel>
+					</ControlTemplate>
+				</Validation.ErrorTemplate>
+			</TextBox>
+			<Label Content="Szablon dla Validation.ErrorTemplate" />
+		</WrapPanel>
+
+		<WrapPanel>
+			<Label Content="Nazwa:" />
+			<TextBox Text="{Binding Name, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}"
+					 Style="{StaticResource UsingIDataErrorInfo}" />
+			<Label Content="Cena:" />
+			<TextBox Text="{Binding Price, UpdateSourceTrigger=PropertyChanged, StringFormat={}{0:F2}, ValidatesOnDataErrors=True}"
+					 Style="{StaticResource UsingIDataErrorInfo}" />
+			<Label Content="Implementacja interfejsu IDataErrorInfo" />
+		</WrapPanel>
+
+		<WrapPanel>
+			<Label Content="Nazwa:" />
+			<TextBox Text="{Binding Name}"
+					 Style="{StaticResource UsingIDataErrorInfo}" />
+			<Label Content="Cena:" />
+			<TextBox Style="{StaticResource UsingIDataErrorInfo}">
+				<TextBox.Text>
+					<Binding Path="Price"
+							 UpdateSourceTrigger="PropertyChanged"
+							 StringFormat="{}{0:F2}">
+						<Binding.ValidationRules>
+							<local:NumberValidator Min="1"
+												   Max="500" />
+						</Binding.ValidationRules>
+					</Binding>
+				</TextBox.Text>
+			</TextBox>
+			<Label Content="Definiowanie własnych reguł walidacji" />
+		</WrapPanel>
+
+		<Button Content="Przykład walidacji danych z użyciem wyrażeń regularnych - Regex"
+				Margin="20"
+				Click="Button_Click" />
+	</StackPanel>
+</Window>
